@@ -10,9 +10,13 @@
                     <a class="nav-link" href="{{ route('applications-list') }}">Applications</a>
                 </li>
                 <li class="nav-item active">
+                    <a class="nav-link" href="{{ route('channels-list') }}">Channels</a>
+                </li>
+                <li class="nav-item active">
                     <a class="nav-link float-right" href="{{ route('logout') }}">Quit</a>
                 </li>
             </ul>
         </div>
     </nav>
+    <br>
 @endif

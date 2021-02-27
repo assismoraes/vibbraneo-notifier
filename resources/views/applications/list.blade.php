@@ -22,7 +22,8 @@
                 <td>{{ $app->uses_email ? 'Yes' : 'No' }}</td>
                 <td>{{ $app->uses_sms ? 'Yes' : 'No' }}</td>
                 <td>
-                    <a type="button" class="btn btn-sm btn-primary" href="{{ route('applications-edit', $app->id) }}">Edit</a>
+                    <a type="button" class="btn btn-sm btn-primary" href="{{ route('applications-edit', $app->id) }}">Edit <i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                    <a type="button" class="btn btn-sm btn-info" href="{{ route('applications-detail', $app->id) }}">Details <i class="fa fa-eye" aria-hidden="true"></i></a>
                 </td>
             </tr>
         @endforeach

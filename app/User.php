@@ -40,4 +40,20 @@ class User extends Authenticatable
     public function applications() {
         return $this->hasMany('\App\Models\Application');
     }
+
+    public function hasWebPushChannel() {
+        return false;
+    }
+
+    public function emailChannels() {
+        return $this->hasMany('App\Models\EmailChannel');
+    }
+
+    public function hasSmsChannel() {
+        return false;
+    }
+
+    public function hasEmailChannels() {
+        return $this->emailChannels()->count() > 0;
+    }
 }

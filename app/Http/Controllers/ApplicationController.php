@@ -46,4 +46,10 @@ class ApplicationController extends Controller
 
         return redirect(route('applications-list'))->with('successMessage', 'Application saved successfully');
     }
+
+    public function detail($id) {
+        $application = Auth::user()->applications()->where('id', '=', $id)->first();
+
+        return view('applications.detail', compact(['application']));
+    }
 }

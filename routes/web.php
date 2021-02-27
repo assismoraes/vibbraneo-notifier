@@ -30,4 +30,16 @@ Route::group(['prefix' => 'applications'], function() {
     Route::post('', 'ApplicationController@create')->name('applications-create');
     Route::get('/{id}/edit', 'ApplicationController@edit')->name('applications-edit');
     Route::put('/{id}', 'ApplicationController@update')->name('applications-update');
+    Route::get('/{id}', 'ApplicationController@detail')->name('applications-detail');
+});
+
+Route::group(['prefix' => 'channels'], function() {
+    Route::get('', 'ChannelController@list')->name('channels-list');
+});
+
+Route::group(['prefix' => 'email-channels'], function() {
+    Route::get('/new', 'EmailChannelController@new')->name('email-channels-new');
+    Route::post('', 'EmailChannelController@create')->name('email-channels-create');
+    Route::get('/{id}/edit', 'EmailChannelController@edit')->name('email-channels-edit');
+    Route::put('/{id}', 'EmailChannelController@update')->name('email-channels-update');
 });
