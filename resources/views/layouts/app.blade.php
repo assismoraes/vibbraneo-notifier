@@ -7,6 +7,7 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" >
+    <script src="https://use.fontawesome.com/5e339fb84b.js"></script>
 
     <title>Vibbraneo Notifier</title>
 

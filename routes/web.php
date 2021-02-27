@@ -20,3 +20,6 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('logout', 'Auth\LoginController@logout')->name('logout');
+
+Route::get('/redirect', 'SocialAuthGoogleController@redirect');
+Route::get('/google/callback', 'SocialAuthGoogleController@callback');

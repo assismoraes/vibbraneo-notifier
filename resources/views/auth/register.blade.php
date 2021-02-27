@@ -46,6 +46,10 @@
         </div>
     </div>
     
-    <button type="submit" class="btn btn-sm btn-primary">Sign in</button>
+    <button type="submit" class="btn btn-sm btn-primary">Sign up</button> 
+    <a href="{{url('/redirect')}}" class="btn btn-sm btn-primary float-right">Sign up with Google <i class="fa fa-google" aria-hidden="true"></i> </a>
+    
 </form>
+
+
 @endsection
