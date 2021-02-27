@@ -18,8 +18,8 @@
     </style>
   </head>
   <body>
-    <a href="{{ route('logout') }}">Logout</a>
     <div class="container">
+        @include('layouts.messages')
         @yield('content')
     </div>
 
