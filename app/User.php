@@ -49,11 +49,19 @@ class User extends Authenticatable
         return $this->hasMany('App\Models\EmailChannel');
     }
 
+    public function smsChannels() {
+        return $this->hasMany('App\Models\SmsChannel');
+    }
+
     public function hasSmsChannel() {
         return false;
     }
 
     public function hasEmailChannels() {
         return $this->emailChannels()->count() > 0;
+    }
+
+    public function hasSmsChannels() {
+        return $this->smsChannels()->count() > 0;
     }
 }
