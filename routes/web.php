@@ -50,3 +50,8 @@ Route::group(['prefix' => 'sms-channels'], function() {
     Route::get('/{id}/edit', 'SMSChannelController@edit')->name('sms-channels-edit');
     Route::put('/{id}', 'SMSChannelController@update')->name('sms-channels-update');
 });
+
+Route::group(['prefix' => 'email-notification'], function() {
+    Route::get('/new', 'EmailNotificationController@new')->name('email-notifications-new');
+    Route::post('', 'EmailNotificationController@send')->name('email-notifications-send');
+});

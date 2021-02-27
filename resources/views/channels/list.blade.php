@@ -35,6 +35,7 @@
                                 <li class="list-group-item">Password: <b>{{  str_repeat("*", strlen($channel->password)) }}</b></li>
                             </ul>
                             <br>
+                            <a href="{{ route('email-notifications-new') }}" class="btn btn-sm btn-primary float-left">Send email <i class="fa fa-paper-plane-o" aria-hidden="true"></i></a>
                             <a href="{{ route('email-channels-edit', $channel->id) }}" class="btn btn-sm btn-primary float-right">Edit <i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
                         </div>
                     </div>
