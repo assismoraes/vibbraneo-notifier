@@ -27,7 +27,12 @@
                 <div class="col-sm-4">
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">E-mail Channel</h5>
+                            <h6 class="card-title">E-mail Channel 
+                                <a class="btn btn-sm btn-{{ $channel->is_enabled ? 'danger' : 'success' }}" 
+                                    href="{{ route('email-channels-toggle', $channel->id) }}">
+                                        {{ $channel->is_enabled ? 'Disable' : 'Enable' }} <i class="fa fa-toggle-{{ $channel->is_enabled ? 'on' : 'off' }}" aria-hidden="true"></i>
+                                </a>
+                            </h6>
                             <ul class="list-group list-group-flush">
                                 <li class="list-group-item">SMTP server name: <b>{{ $channel->smtp_server_name }}</b></li>
                                 <li class="list-group-item">Port: <b>{{ $channel->port }}</b></li>
@@ -35,7 +40,7 @@
                                 <li class="list-group-item">Password: <b>{{  str_repeat("*", strlen($channel->password)) }}</b></li>
                             </ul>
                             <br>
-                            <a href="{{ route('email-notifications-new') }}" class="btn btn-sm btn-primary float-left">Send email <i class="fa fa-paper-plane-o" aria-hidden="true"></i></a>
+                            <a href="{{ route('email-notifications-new') }}" class="btn btn-sm btn-primary float-left @if(!$channel->is_enabled) disabled @endif">Send email <i class="fa fa-paper-plane-o" aria-hidden="true"></i></a>
                             <a href="{{ route('email-channels-edit', $channel->id) }}" class="btn btn-sm btn-primary float-right">Edit <i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
                         </div>
                     </div>

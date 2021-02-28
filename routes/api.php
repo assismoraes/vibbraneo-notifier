@@ -24,3 +24,7 @@ Route::group(['prefix' => 'applications', 'middleware' => ['auth:api']], functio
     Route::put('/{id}', 'ApplicationController@update')->name('applications-update');
     Route::get('/{id}', 'ApplicationController@detail')->name('applications-detail');
 });
+
+Route::group(['prefix' => 'email-channels', 'middleware' => ['auth:api']], function() {
+    Route::get('/{id}/toggle', 'EmailChannelController@toggle')->name('email-channels-toggle');
+});
