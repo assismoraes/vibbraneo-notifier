@@ -7,4 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Application extends Model
 {
     protected $guarded = [];
+
+    public function emailNotifications() {
+        return $this->hasMany('App\Models\EmailNotification');
+    }
 }

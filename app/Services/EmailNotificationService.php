@@ -47,4 +47,8 @@ class EmailNotificationService
 
         return $not;
     }
+
+    public function list() {
+        return EmailNotification::orderBy('id', 'desc')->paginate(5);
+    }
 }
