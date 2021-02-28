@@ -9,7 +9,7 @@
         </tr>
     </thead>
     <tbody>
-        @foreach ($emailNotifications as $not)
+        @foreach ($notifications as $not)
         <tr data-toggle="collapse" href="#collapse{{ $not->id }}" role="button" aria-expanded="false" aria-controls="collapseExample">
             <td>{{ $not->sender_name }}</td>
             <td>{{ $not->email }}</td>
@@ -31,7 +31,7 @@
         </tr>
         
         @endforeach
-        @if ($emailNotifications->count() == 0)
+        @if ($notifications->count() == 0)
         <tr>
             <td>No notification found</td>
         </tr>
@@ -40,5 +40,5 @@
 </table>
 
 <ul class="pagination pagination-sm justify-content-center">
-    {{ $emailNotifications->appends(['channel' => Request::get('channel')])->links() }}
+    {{ $notifications->appends(['channel' => Request::get('channel')])->links() }}
 </ul>

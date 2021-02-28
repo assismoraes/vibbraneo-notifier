@@ -10,5 +10,6 @@ class EmailNotification extends Model
 
     protected $casts = [
         'sent_at' => 'datetime',
+        'sent' => 'boolean'
     ];
 }

@@ -52,7 +52,7 @@ Route::group(['prefix' => 'sms-channels'], function() {
     Route::put('/{id}', 'SMSChannelController@update')->name('sms-channels-update');
 });
 
-Route::group(['prefix' => 'email-notification'], function() {
+Route::group(['prefix' => 'email-notifications'], function() {
     Route::get('/new', 'EmailNotificationController@new')->name('email-notifications-new');
     Route::post('', 'EmailNotificationController@send')->name('email-notifications-send');
     Route::get('/', 'EmailNotificationController@list')->name('email-notifications-list');

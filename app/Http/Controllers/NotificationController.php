@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Services\EmailNotificationService;
+use App\Utils\RequestUtil;
 
 class NotificationController extends Controller
 {
@@ -14,9 +15,14 @@ class NotificationController extends Controller
         $this->emailNotificationService = new EmailNotificationService();
     }
 
-    public function list() {
-        $emailNotifications = $this->emailNotificationService->list();
+    public function list(Request $r) {
+        if($r->get('channel') == 'sms')
+            $notifications = [];
+        else if($r->get('channel') == 'webPush')
+            $notifications = [];
+        else
+            $notifications = $this->emailNotificationService->list();
 
-        return view('notifications.list', compact(['emailNotifications']));
+        return RequestUtil::isFromApi($r) ? $notifications : view('notifications.list', compact(['notifications']));
     }
 }
