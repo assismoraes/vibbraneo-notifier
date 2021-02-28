@@ -6,13 +6,14 @@ use Illuminate\Http\Request;
 use App\Models\Application;
 use Auth;
 use App\Http\Requests\SaveApplicationRequest;
+use App\Utils\RequestUtil;
 
 class ApplicationController extends Controller
 {
-    public function list() {
+    public function list(Request $r) {
         $applications = Auth::user()->applications()->get();
 
-        return view('applications.list', compact(['applications']));
+        return RequestUtil::isFromApi($r) ? $applications : view('applications.list', compact(['applications']));
     }
 
     public function new() {
@@ -20,7 +21,7 @@ class ApplicationController extends Controller
     }
 
     public function create(SaveApplicationRequest $r) {
-        Application::create([
+        $application = Application::create([
             'name' => $r['name'],
             'uses_web_push' => $r->has('uses_web_push'),
             'uses_email' => $r->has('uses_email'),
@@ -28,7 +29,7 @@ class ApplicationController extends Controller
             'user_id' => Auth::user()->id
         ]);
 
-        return redirect(route('applications-list'))->with('successMessage', 'Application saved successfully');
+        return RequestUtil::isFromApi($r) ? $application : redirect(route('applications-list'))->with('successMessage', 'Application saved successfully');
     }
 
     public function edit($id) {
@@ -44,12 +45,12 @@ class ApplicationController extends Controller
         $application->uses_sms = $r->has('uses_sms');
         $application->save();
 
-        return redirect(route('applications-list'))->with('successMessage', 'Application saved successfully');
+        return RequestUtil::isFromApi($r) ? $application : redirect(route('applications-list'))->with('successMessage', 'Application saved successfully');
     }
 
-    public function detail($id) {
+    public function detail(Request $r, $id) {
         $application = Auth::user()->applications()->where('id', '=', $id)->first();
 
-        return view('applications.detail', compact(['application']));
+        return RequestUtil::isFromApi($r) ? $application : view('applications.detail', compact(['application']));
     }
 }
