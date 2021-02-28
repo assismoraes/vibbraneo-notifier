@@ -27,7 +27,7 @@ class CreateEmailNotificationsTable extends Migration
             $table->foreign('email_channel_id')->references('id')->on('email_channels')->onDelete('cascade');
 
             $table->boolean('sent')->default(false);
-            $table->date('sent_at')->nullable();
+            $table->datetime('sent_at')->nullable();
 
             $table->timestamps();
         });

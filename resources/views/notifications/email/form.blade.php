@@ -43,7 +43,7 @@
     <div class="form-row">
         <div class="form-group col-md-12">
             <label for="content">Login</label>
-            <textarea name="content" id="content" class="form-control form-control-sm {{ $errors->has('content') ? 'is-invalid' : '' }}" cols="30" rows="10">{{ old('content') ?? 'conteudo para envio' }}</textarea>
+            <textarea name="content" id="content" class="form-control form-control-sm {{ $errors->has('content') ? 'is-invalid' : '' }}" cols="30" rows="10">{{ old('content') ?? '<h1>conteudo para envio</h1>' }}</textarea>
             <div class="invalid-feedback">
                 {{ $errors->first('content') }}
             </div>

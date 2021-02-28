@@ -15,8 +15,11 @@ class EmailNotificationController extends Controller
     }
 
     public function send(SendEmailNotificationRequest $r) {
-        EmailNotificationService::sendEmail($r);
+        $not = EmailNotificationService::sendEmail($r);
 
-        return redirect(route('channels-list'))->with('successMessage', 'Email notification sent successfully');
+        if($not->sent)
+            return redirect(route('channels-list'))->with('successMessage', 'Email notification sent successfully');
+        
+        return redirect(route('channels-list'))->with('errorMessage', 'Email notification not sent. Try again later.');
     }
 }
