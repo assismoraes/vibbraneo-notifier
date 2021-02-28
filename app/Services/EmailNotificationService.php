@@ -49,6 +49,8 @@ class EmailNotificationService
     }
 
     public function list() {
-        return EmailNotification::orderBy('id', 'desc')->paginate(5);
+        $user = Auth::user();
+        $applicationsIds = $user->applications()->select('id')->get();
+        return EmailNotification::whereIn('application_id', $applicationsIds)->orderBy('id', 'desc')->paginate(5);
     }
 }
