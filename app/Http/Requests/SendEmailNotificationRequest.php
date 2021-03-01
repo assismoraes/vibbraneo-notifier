@@ -3,6 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use App\Rules\ValidateUserApplicationRule;
+use App\Rules\ApplicationUsageRule;
 
 class SendEmailNotificationRequest extends FormRequest
 {
@@ -27,7 +29,7 @@ class SendEmailNotificationRequest extends FormRequest
             'sender_name' => 'required',
             'email' => 'required|email',
             'content' => 'required',
-            'application_id' => 'required|exists:applications,id',
+            'application_id' => ['required', new ValidateUserApplicationRule, new ApplicationUsageRule('uses_email')],
         ];
     }
 

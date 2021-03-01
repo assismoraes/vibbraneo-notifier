@@ -32,3 +32,7 @@ Route::group(['prefix' => 'email-channels', 'middleware' => ['auth:api']], funct
 Route::group(['prefix' => 'notifications', 'middleware' => ['auth:api']], function() {
     Route::get('/', 'NotificationController@list')->name('notifications-list');
 });
+
+Route::group(['prefix' => 'email-notifications', 'middleware' => ['auth:api']], function() {
+    Route::post('', 'EmailNotificationController@send')->name('email-notifications-send');
+});

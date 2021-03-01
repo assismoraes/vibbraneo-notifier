@@ -10,6 +10,12 @@ class Application extends Model
 
     protected $hidden = ['user_id'];
 
+    protected $casts = [
+        'uses_email' => 'boolean',
+        'uses_web_push' => 'boolean',
+        'uses_sms' => 'boolean'
+    ];
+
     public function emailNotifications() {
         return $this->hasMany('App\Models\EmailNotification');
     }

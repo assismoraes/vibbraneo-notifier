@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\SendEmailNotificationRequest;
 use App\Services\EmailNotificationService;
 use Auth;
+use App\Utils\RequestUtil;
 
 class EmailNotificationController extends Controller
 {
@@ -18,8 +19,8 @@ class EmailNotificationController extends Controller
         $not = EmailNotificationService::sendEmail($r);
 
         if($not->sent)
-            return redirect(route('channels-list'))->with('successMessage', 'Email notification sent successfully');
+            return RequestUtil::isFromApi($r) ? response(['message' => 'Email notification sent successfully'], 200) : redirect(route('channels-list'))->with('successMessage', 'Email notification sent successfully');
         
-        return redirect(route('channels-list'))->with('errorMessage', 'Email notification not sent. Try again later.');
+        return RequestUtil::isFromApi($r) ? response(['message' => 'Email notification not sent. Try again later.'], 200) : redirect(route('channels-list'))->with('errorMessage', 'Email notification not sent. Try again later.');
     }
 }

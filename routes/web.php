@@ -55,7 +55,7 @@ Route::group(['prefix' => 'sms-channels'], function() {
 Route::group(['prefix' => 'email-notifications'], function() {
     Route::get('/new', 'EmailNotificationController@new')->name('email-notifications-new');
     Route::post('', 'EmailNotificationController@send')->name('email-notifications-send');
-    Route::get('/', 'EmailNotificationController@list')->name('email-notifications-list');
+    //Route::get('/', 'EmailNotificationController@list')->name('email-notifications-list');
 });
 
 Route::group(['prefix' => 'notifications'], function() {
