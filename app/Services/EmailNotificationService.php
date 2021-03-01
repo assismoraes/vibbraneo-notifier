@@ -6,6 +6,8 @@ use App\Models\EmailChannel;
 use App\Models\EmailNotification;
 use Auth;
 use \Carbon\Carbon;
+use App\Utils\RequestUtil;
+use App\Enums\SendingSourceEnum;
 
 class EmailNotificationService
 {
@@ -42,6 +44,7 @@ class EmailNotificationService
             \Mail::to($not->email)->send(new \App\Mail\Mailer($details));
             $not->sent_at = Carbon::now();
             $not->sent = true;
+            $not->sending_source = RequestUtil::isFromApi($r) ? SendingSourceEnum::API : SendingSourceEnum::WEB_PLATFORM;
             $not->save();
         } catch (\Throwable $th) { }
 
