@@ -8,12 +8,15 @@ use Auth;
 use \Carbon\Carbon;
 use App\Utils\RequestUtil;
 use App\Enums\SendingSourceEnum;
+use Illuminate\Validation\ValidationException;
 
 class EmailNotificationService
 {
     public static function sendEmail($r){
         $user = Auth::user();
-        $channel = $user->emailChannels[0];
+        $channel = $user->emailChannels[0] ?? null;
+
+        if($channel == null || !$channel->is_enabled) throw ValidationException::withMessages(['channel' => 'SMS channel is invalid or disabled']);
 
         $not = EmailNotification::create([
             'sender_name' => $r->sender_name,
