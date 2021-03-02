@@ -39,3 +39,10 @@ Route::group(['prefix' => 'notifications', 'middleware' => ['auth:api']], functi
 Route::group(['prefix' => 'email-notifications', 'middleware' => ['auth:api']], function() {
     Route::post('', 'EmailNotificationController@send')->name('email-notifications-send');
 });
+
+Route::group(['prefix' => 'email-templates', 'middleware' => ['auth:api']], function() {
+    Route::get('', 'EmailTemplateController@list')->name('email-templates-list');
+    Route::post('', 'EmailTemplateController@save')->name('email-templates-save');
+    Route::get('/{id}', 'EmailTemplateController@detail')->name('email-templates-detail');
+    Route::get('/{id}/delete', 'EmailTemplateController@delete')->name('email-templates-delete');
+});

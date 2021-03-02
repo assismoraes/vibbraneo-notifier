@@ -11,7 +11,7 @@ use App\Models\EmailTemplate;
 class EmailTemplateController extends Controller
 {
     public function list(Request $r) {
-        $templates = Auth::user()->emailTemplates()->get();
+        $templates = Auth::user()->emailTemplates()->paginate(5);
 
         return RequestUtil::isFromApi($r) ? $templates : view('email-templates.list', compact(['templates']));
     }
@@ -37,7 +37,9 @@ class EmailTemplateController extends Controller
     public function detail(Request $r, $id) {
         $template = Auth::user()->emailTemplates()->where('id', '=', $id)->first();
 
-        return RequestUtil::isFromApi($r) ? $template : view('email-templates.detail', compact(['template']));
+        return RequestUtil::isFromApi($r) ? 
+            (!empty($template) ? $template : response(['message' => 'Invalid email template'])) : 
+            view('email-templates.detail', compact(['template']));
     }
 
     public function delete(Request $r, $id) {

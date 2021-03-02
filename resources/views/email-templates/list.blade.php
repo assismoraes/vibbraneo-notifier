@@ -32,5 +32,8 @@
 
 <a class="btn btn-sm btn-success float-right" href="{{ route('email-templates-new') }}">Add template <i class="fa fa-plus" aria-hidden="true"></i></a>
 
+<ul class="pagination pagination-sm justify-content-center">
+    {{ $templates->appends(['channel' => Request::get('channel')])->links() }}
+</ul>
 
 @endsection
