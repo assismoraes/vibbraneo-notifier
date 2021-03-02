@@ -32,8 +32,13 @@ This is an web application with an API to send SMS, Web Push and Email notificat
 First of all, users have to be registered to this application. There are two ways it can be done: by web form and by google account. Accessing [http://localhost:8000/](http://localhost:8000/), it can be done.
 After that, user can access both web application and API endpoints.
 
+#### Important.: All no public endpoints need the following headers:
+- Accept: application/json
+- Content-Type: application/json
+- Authorization: Bearer {access_token} (This is the access_token retrieved by authentication endpoint request /api/auth)
+
 ### API user authentication
-  - POST /api/auth
+  - POST /api/auth (PUBLIC: yes)
   ```json
   {
     "username": "EMAIL_REGISTERED",
@@ -48,7 +53,7 @@ After that, user can access both web application and API endpoints.
   ```
 
 ### Retrieve current user
-  - GET /api/user
+  - GET /api/user (PUBLIC: no)
   ```json
   {
     "username": "EMAIL_REGISTERED",
@@ -71,7 +76,7 @@ After that, user can access both web application and API endpoints.
 ```
 
 ### Creating application
-  - POST /api/applications
+  - POST /api/applications (PUBLIC: no)
   ```json
   {
 	"name": "My application name"
@@ -94,7 +99,7 @@ After that, user can access both web application and API endpoints.
 ```
 
 ### Updating application
-  - PUT /api/applications/{application_id}
+  - PUT /api/applications/{application_id} (PUBLIC: no)
   ```json
   {
 	"name": "My application name"
@@ -116,7 +121,7 @@ After that, user can access both web application and API endpoints.
 }
 ```
 ### Listing applications
-  - GET /api/applications/
+  - GET /api/applications/ (PUBLIC: no)
   
   - RESPONSE: 
  ```json
@@ -142,7 +147,7 @@ After that, user can access both web application and API endpoints.
 ]
 ```
 ### Detail application
-  - GET /api/applications/{application_id}
+  - GET /api/applications/{application_id} (PUBLIC: no)
   
   - RESPONSE: 
  ```json
@@ -157,7 +162,7 @@ After that, user can access both web application and API endpoints.
 }
 ```
 ### Configure email channel
-  - POST /api/email-channels
+  - POST /api/email-channels (PUBLIC: no)
    ```json
  {
 	 "smtp_server_name": "smtp.gmail.com",
@@ -180,7 +185,7 @@ After that, user can access both web application and API endpoints.
 }
 ```
 ### Toggle email channel
-  - GET /api/email-channels/toggle
+  - GET /api/email-channels/toggle (PUBLIC: no)
   
   - RESPONSE: 
  ```json
@@ -197,7 +202,7 @@ After that, user can access both web application and API endpoints.
 ```
 
 ### Retrieve email channel
-  - GET /api/email-channels
+  - GET /api/email-channels (PUBLIC: no)
   
   - RESPONSE: 
  ```json
@@ -213,7 +218,7 @@ After that, user can access both web application and API endpoints.
 }
 ```
 ### Save email template
-  - POST /api/email-templates
+  - POST /api/email-templates (PUBLIC: no)
 	  - send via form-data the following parameters
 			  - name: string
 			  - template: file (.html file)
@@ -228,7 +233,7 @@ After that, user can access both web application and API endpoints.
 }
 ```
 ### Listing email templates
-  - GET /api/email-templates
+  - GET /api/email-templates (PUBLIC: no)
 ##### This request accepts a 'page' filter. Ex.: /api/email-templates?page=3
   - RESPONSE: 
  ```json
@@ -263,7 +268,7 @@ After that, user can access both web application and API endpoints.
 }
 ```
 ### Retrieve email template
-  - GET /api/email-templates/{email_template_id}
+  - GET /api/email-templates/{email_template_id} (PUBLIC: no)
   
   - RESPONSE: 
  ```json
@@ -282,7 +287,7 @@ if the template do not exists:
 }
 ```
 ### Deleting email template
-  - GET /api/email-templates/{email_template_id}/delete
+  - GET /api/email-templates/{email_template_id}/delete (PUBLIC: no)
   
   - RESPONSE: 
  ```json
@@ -291,7 +296,7 @@ if the template do not exists:
 }
 ```
 ### Listing e-mail notifications
-  - GET /api/notifications?page=2&channel=email&sending_source=WEB_PLATFORM&from=2021-01-01&to=2021-10-10
+  - GET /api/notifications?page=2&channel=email&sending_source=WEB_PLATFORM&from=2021-01-01&to=2021-10-10 (PUBLIC: no)
 ##### page -> number of the page(Ex.: 1, 54, 28)
 ##### channel -> sms | email | webPush
 ##### sending_source -> API | WEB_PLATFORM
