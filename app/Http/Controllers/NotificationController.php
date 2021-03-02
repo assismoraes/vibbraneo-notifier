@@ -21,7 +21,7 @@ class NotificationController extends Controller
         else if($r->get('channel') == 'webPush')
             $notifications = [];
         else
-            $notifications = $this->emailNotificationService->list();
+            $notifications = $this->emailNotificationService->list($r);
 
         return RequestUtil::isFromApi($r) ? $notifications : view('notifications.list', compact(['notifications']));
     }

@@ -54,9 +54,17 @@ class EmailNotificationService
         return $not;
     }
 
-    public function list() {
+    public function list($r) {
         $user = Auth::user();
         $applicationsIds = $user->applications()->select('id')->get();
-        return EmailNotification::whereIn('application_id', $applicationsIds)->orderBy('id', 'desc')->paginate(5);
+        $notifications = EmailNotification::whereIn('application_id', $applicationsIds);
+
+        if($r->has('from')) $notifications->where('sent_at', '>=', $r->from);
+
+        if($r->has('to')) $notifications->where('sent_at', '<=', $r->to);
+
+        $notifications->orderBy('id', 'desc');
+
+        return $notifications->paginate(5);
     }
 }

@@ -40,5 +40,5 @@
 </table>
 
 <ul class="pagination pagination-sm justify-content-center">
-    {{ $notifications->appends(['channel' => Request::get('channel')])->links() }}
+    {{ $notifications->appends(['channel' => Request::get('channel'), 'from' => request()->get('from'), 'to' => request()->get('to')])->links() }}
 </ul>
