@@ -39,6 +39,9 @@ class ApplicationController extends Controller
 
     public function update(SaveApplicationRequest $r, $id) {
         $application = Auth::user()->applications()->where('id', '=', $id)->first();
+
+        if(empty($application)) return RequestUtil::isFromApi($r) ? response(['message' => 'Application not fount'], 404) : redirect(route('applications-list'))->with('errorMessage', 'Application not found');
+
         $application->name = $r->name;
         $application->uses_web_push = $r->has('uses_web_push');
         $application->uses_email = $r->has('uses_email');

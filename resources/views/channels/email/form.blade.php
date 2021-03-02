@@ -4,11 +4,9 @@
 
 @include('layouts.menu')
 
-<form method="post" action="{{ empty($channel) ? route('email-channels-create') : route('email-channels-update', $channel->id) }}" >
+<form method="post" action="{{ route('email-channels-create-or-update') }}" >
     
     @csrf
-    
-    @if(!empty($channel)) @method('PUT') @endif
     
     <div class="form-row">
         <div class="form-group col-md-6">
@@ -31,7 +29,7 @@
         </div>
     </div>
     <div class="form-row">
-        <div class="form-group col-md-4">
+        <div class="form-group col-md-6">
             <label for="login">Login</label>
             <input type="text" class="form-control form-control-sm {{ $errors->has('login') ? 'is-invalid' : '' }}" id="login" name="login" placeholder="Type login"
                 value="{{ old('login') ?? $channel->login ?? '' }}"
@@ -40,16 +38,12 @@
                 {{ $errors->first('login') }}
             </div>
         </div>
-        <div class="form-group col-md-4">
+        <div class="form-group col-md-6">
             <label for="password">Password</label>
             <input type="password" class="form-control form-control-sm {{ $errors->has('password') ? 'is-invalid' : '' }}" id="password" name="password" placeholder="Type your password">
             <div class="invalid-feedback">
                 {{ $errors->first('password') }}
             </div>
-        </div>
-        <div class="form-group col-md-4">
-            <label for="password_confirmation">Password confirmation</label>
-            <input type="password" class="form-control form-control-sm" id="password_confirmation" name="password_confirmation" placeholder="Type your password confirmation">
         </div>
     </div>
     

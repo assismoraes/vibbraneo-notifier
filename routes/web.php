@@ -39,10 +39,9 @@ Route::group(['prefix' => 'channels'], function() {
 
 Route::group(['prefix' => 'email-channels'], function() {
     Route::get('/new', 'EmailChannelController@new')->name('email-channels-new');
-    Route::post('', 'EmailChannelController@create')->name('email-channels-create');
-    Route::get('/{id}/edit', 'EmailChannelController@edit')->name('email-channels-edit');
-    Route::put('/{id}', 'EmailChannelController@update')->name('email-channels-update');
-    Route::get('/{id}/toggle', 'EmailChannelController@toggle')->name('email-channels-toggle');
+    Route::post('', 'EmailChannelController@createOrUpdate')->name('email-channels-create-or-update');
+    Route::get('/edit', 'EmailChannelController@edit')->name('email-channels-edit');
+    Route::get('/toggle', 'EmailChannelController@toggle')->name('email-channels-toggle');
 });
 
 Route::group(['prefix' => 'sms-channels'], function() {

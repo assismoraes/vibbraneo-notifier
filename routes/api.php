@@ -27,7 +27,9 @@ Route::group(['prefix' => 'applications', 'middleware' => ['auth:api']], functio
 });
 
 Route::group(['prefix' => 'email-channels', 'middleware' => ['auth:api']], function() {
-    Route::get('/{id}/toggle', 'EmailChannelController@toggle')->name('email-channels-toggle');
+    Route::post('', 'EmailChannelController@createOrUpdate')->name('email-channels-create');
+    Route::get('toggle', 'EmailChannelController@toggle')->name('email-channels-toggle');
+    Route::get('', 'EmailChannelController@get')->name('email-channels-get');
 });
 
 Route::group(['prefix' => 'notifications', 'middleware' => ['auth:api']], function() {

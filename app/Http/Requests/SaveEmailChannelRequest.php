@@ -27,7 +27,7 @@ class SaveEmailChannelRequest extends FormRequest
             'smtp_server_name' => 'required',
             'port' => 'required|numeric',
             'login' => 'required',
-            'password' => 'required|confirmed'
+            'password' => 'required'
         ];
     }
 
@@ -37,7 +37,6 @@ class SaveEmailChannelRequest extends FormRequest
             'port.required' => 'The port is required',
             'login.required' => 'The login is required',
             'password.required' => 'The password is required',
-            'password.confirmed' => 'The password and password confirmation do not match'
         ];
     }
 }

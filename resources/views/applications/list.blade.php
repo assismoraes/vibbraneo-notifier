@@ -35,8 +35,8 @@
     </tbody>
 </table>
 
-@if ($applications->count() == 0)
-    <a class="btn btn-sm btn-success float-right" href="{{ route('applications-new') }}">Add application <i class="fa fa-plus" aria-hidden="true"></i></a>
-@endif
+
+<a class="btn btn-sm btn-success float-right" href="{{ route('applications-new') }}">Add application <i class="fa fa-plus" aria-hidden="true"></i></a>
+
 
 @endsection
