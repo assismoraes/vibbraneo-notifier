@@ -63,6 +63,8 @@ class EmailNotificationService
 
         if(!empty($r->to)) $notifications->where('sent_at', '<=', $r->to);
 
+        if(!empty($r->sending_source)) $notifications->where('sending_source', '=', $r->sending_source);
+
         $notifications->orderBy('id', 'desc');
 
         return $notifications->paginate(5);

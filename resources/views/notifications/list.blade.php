@@ -15,6 +15,14 @@
         <input type="hidden" name="page" value="{{ request()->get('page') }}"  >
         <input type="hidden" name="channel" value="{{ request()->get('channel') }}"  >
         <div class="form-group">
+            <label for="sending_source">Sent by:</label>
+            <select class="form-control form-control-sm mx-sm-3" name="sending_source" >
+                <option value="">Choose a sending source</option>
+                <option @if(request()->get('sending_source')=='API') selected @endif value="API">API</option>
+                <option @if(request()->get('sending_source')=='WEB_PLATFORM') selected @endif value="WEB_PLATFORM">Web platform</option>
+            </select>
+        </div>
+        <div class="form-group">
             <label for="from">From:</label>
             <input type="date" id="from" name="from" class="form-control form-control-sm mx-sm-3" value="{{ 
                 !empty(request()->get('from')) ? \Carbon\Carbon::parse(request()->get('from'))->format('Y-m-d') : ''
@@ -31,13 +39,13 @@
         </div>
     </form>
     <li class="nav-item">
-        <a class="nav-link" href="{{ route('notifications-list', ['channel' => 'email']) }}">E-mail notifications</a>
+        <a class="nav-link" href="{{ route('notifications-list', ['channel' => 'email']) }}">E-mail</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="{{ route('notifications-list', ['channel' => 'sms']) }}">SMS notifications</a>
+        <a class="nav-link" href="{{ route('notifications-list', ['channel' => 'sms']) }}">SMS</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="{{ route('notifications-list', ['channel' => 'webPush']) }}">Web push notifications</a>
+        <a class="nav-link" href="{{ route('notifications-list', ['channel' => 'webPush']) }}">Web push</a>
     </li>
 </ul>
 
