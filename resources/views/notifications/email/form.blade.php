@@ -9,7 +9,7 @@
     @csrf
     
     <div class="form-row">
-        <div class="form-group col-md-4">
+        <div class="form-group col-md-6">
             <label for="sender_name">Sender name</label>
             <input type="text" class="form-control form-control-sm {{ $errors->has('sender_name') ? 'is-invalid' : '' }}" id="sender_name" name="sender_name" placeholder="Type the sender name"
                 value="{{ old('sender_name') ?? 'joao de santo cristo' }}"
@@ -18,7 +18,7 @@
                 {{ $errors->first('sender_name') }}
             </div>
         </div>
-        <div class="form-group col-md-4">
+        <div class="form-group col-md-6">
             <label for="email">Email</label>
             <input type="email" class="form-control form-control-sm {{ $errors->has('email') ? 'is-invalid' : '' }}" id="email" name="email" placeholder="Type the e-mail"
                 value="{{ old('email') ?? 'axmraz@gmail.com' }}"
@@ -27,7 +27,7 @@
                 {{ $errors->first('email') }}
             </div>
         </div>
-        <div class="form-group col-md-4">
+        <div class="form-group col-md-6">
             <label for="application_id">Application</label>
             <select class="form-control form-control-sm {{ $errors->has('application_id') ? 'is-invalid' : '' }}" name="application_id" id="application_id" >
                 <option value="">Choose an application</option>
@@ -39,13 +39,16 @@
                 {{ $errors->first('application_id') }}
             </div>
         </div>
-    </div>
-    <div class="form-row">
-        <div class="form-group col-md-12">
-            <label for="content">Login</label>
-            <textarea name="content" id="content" class="form-control form-control-sm {{ $errors->has('content') ? 'is-invalid' : '' }}" cols="30" rows="10">{{ old('content') ?? '<h1>conteudo para envio</h1>' }}</textarea>
+        <div class="form-group col-md-6">
+            <label for="email_template_id">Template</label>
+            <select class="form-control form-control-sm {{ $errors->has('email_template_id') ? 'is-invalid' : '' }}" name="email_template_id" id="email_template_id" >
+                <option value="">Choose a email template</option>
+                @foreach ($templates as $template)
+                    <option value="{{ $template->id }}" >{{ $template->name }}</option>
+                @endforeach
+            </select>
             <div class="invalid-feedback">
-                {{ $errors->first('content') }}
+                {{ $errors->first('email_template_id') }}
             </div>
         </div>
     </div>

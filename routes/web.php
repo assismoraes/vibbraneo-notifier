@@ -60,3 +60,11 @@ Route::group(['prefix' => 'email-notifications'], function() {
 Route::group(['prefix' => 'notifications'], function() {
     Route::get('/', 'NotificationController@list')->name('notifications-list');
 });
+
+Route::group(['prefix' => 'email-templates'], function() {
+    Route::get('', 'EmailTemplateController@list')->name('email-templates-list');
+    Route::get('/new', 'EmailTemplateController@new')->name('email-templates-new');
+    Route::post('', 'EmailTemplateController@save')->name('email-templates-save');
+    Route::get('/{id}', 'EmailTemplateController@detail')->name('email-templates-detail');
+    Route::get('/{id}/delete', 'EmailTemplateController@delete')->name('email-templates-delete');
+});

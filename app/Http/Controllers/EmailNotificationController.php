@@ -12,7 +12,9 @@ class EmailNotificationController extends Controller
 {
     public function new() {
         $applications = Auth::user()->applications()->where('uses_email', '=', true)->get();
-        return view('notifications.email.form', compact(['applications']));
+        $templates = Auth::user()->emailTemplates()->get();
+        
+        return view('notifications.email.form', compact(['applications', 'templates']));
     }
 
     public function send(SendEmailNotificationRequest $r) {

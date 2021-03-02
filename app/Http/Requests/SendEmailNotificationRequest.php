@@ -28,7 +28,7 @@ class SendEmailNotificationRequest extends FormRequest
         return [
             'sender_name' => 'required',
             'email' => 'required|email',
-            'content' => 'required',
+            'email_template_id' => 'required',
             'application_id' => ['required', new ValidateUserApplicationRule, new ApplicationUsageRule('uses_email')],
         ];
     }
@@ -38,7 +38,7 @@ class SendEmailNotificationRequest extends FormRequest
             'sender_name.required' => 'The sender name is required',
             'email.required' => 'The email name is required',
             'email.email' => 'Type a valid email',
-            'content.required' => 'Type the email content',
+            'email_template_id.required' => 'Choose an email template',
             'application_id.required' => 'Choose an application',
             'application_id.exists' => 'Choose a valid application',
         ];

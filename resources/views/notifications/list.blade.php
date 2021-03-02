@@ -35,7 +35,7 @@
             }}" >
         </div>
         <div class="form-group">
-            <button type="submit" class="btn btn-sm btn-primary">Filter</button>
+            <button type="submit" class="btn btn-sm btn-primary">Filter <i class="fa fa-search" aria-hidden="true"></i></button>
         </div>
     </form>
     <li class="nav-item">

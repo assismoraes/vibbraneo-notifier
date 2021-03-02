@@ -28,12 +28,19 @@
                     <div class="card">
                         <div class="card-body">
                             <h6 class="card-title">E-mail Channel 
-                                <a class="btn btn-sm btn-{{ $channel->is_enabled ? 'danger' : 'success' }}" 
-                                    href="{{ route('email-channels-toggle') }}">
-                                        {{ $channel->is_enabled ? 'Disable' : 'Enable' }} <i class="fa fa-toggle-{{ $channel->is_enabled ? 'on' : 'off' }}" aria-hidden="true"></i>
-                                </a>
+                                
                             </h6>
                             <ul class="list-group list-group-flush">
+                                <li class="list-group-item">
+                                    <a class="btn btn-sm btn-{{ $channel->is_enabled ? 'danger' : 'success' }} float-left" 
+                                        href="{{ route('email-channels-toggle') }}">
+                                            {{ $channel->is_enabled ? 'Disable' : 'Enable' }} <i class="fa fa-toggle-{{ $channel->is_enabled ? 'on' : 'off' }}" aria-hidden="true"></i>
+                                    </a>
+                                    <a class="btn btn-sm btn-info float-right" 
+                                        href="{{ route('email-templates-list') }}">
+                                            Templates <i class="fa fa-html5" aria-hidden="true"></i>
+                                    </a>
+                                </li>
                                 <li class="list-group-item">SMTP server name: <b>{{ $channel->smtp_server_name }}</b></li>
                                 <li class="list-group-item">Port: <b>{{ $channel->port }}</b></li>
                                 <li class="list-group-item">Login: <b>{{ $channel->login }}</b></li>

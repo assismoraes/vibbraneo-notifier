@@ -15,13 +15,14 @@ class EmailNotificationService
     public static function sendEmail($r){
         $user = Auth::user();
         $channel = $user->emailChannels[0] ?? null;
+        $emailTemplate = $user->emailTemplates()->where('id', '=', $r->email_template_id)->first() ?? null;
 
         if($channel == null || !$channel->is_enabled) throw ValidationException::withMessages(['channel' => 'SMS channel is invalid or disabled']);
 
         $not = EmailNotification::create([
             'sender_name' => $r->sender_name,
             'email' => $r->email,
-            'content' => $r->content,
+            'content' => $emailTemplate->content,
             'application_id' => $r->application_id,
             'email_channel_id' => $channel->id
         ]);

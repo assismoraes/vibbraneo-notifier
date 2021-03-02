@@ -65,4 +65,8 @@ class User extends Authenticatable
     public function hasSmsChannels() {
         return $this->smsChannels()->count() > 0;
     }
+
+    public function emailTemplates() {
+        return $this->hasMany('App\Models\EmailTemplate');
+    }
 }
