@@ -4,49 +4,21 @@
 
 @include('layouts.menu')
 
-<div class="card">
-    <div class="card-header">
-        {{ $application->name }}
-    </div>
-    <div class="card-body">
-        <div class="row">
-            @if ($application->uses_web_push)
-                <div class="col-sm-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Web Push Channel</h5>
-                            <p class="card-text">You have no Web Push Channel</p>
-                            <a href="#" class="btn btn-sm btn-primary">Create an Web Push channel</a>
-                        </div>
-                    </div>
-                </div>    
-            @endif
-            @if ($application->uses_email)
-                <div class="col-sm-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">E-mail Channel</h5>
-                            <p class="card-text">You have no E-mail channel</p>
-                            <a href="#" class="btn btn-sm btn-primary">Create an E-mail channel</a>
-                        </div>
-                    </div>
-                </div>
-            @endif
-            @if ($application->uses_sms)
-                <div class="col-sm-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">SMS Channel</h5>
-                            <p class="card-text">You have no SMS channel</p>
-                            <a href="#" class="btn btn-sm btn-primary">Create a SMS channel</a>
-                        </div>
-                    </div>
-                </div>
-            @endif
+@if ($application)
+    <div class="card">
+        <div class="card-header">
+            Application details <a href="{{ route('applications-edit', $application->id) }}" class="btn btn-sm btn-success float-right" >Edit <i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+        </div>
+        <div class="card-body">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">Name: <b>{{ $application->name }}</b> </li>
+                <li class="list-group-item">Uses SMS channel: <b>{{ $application->uses_sms ? 'Yes' : 'No' }}</b> </li>
+                <li class="list-group-item">Uses E-mail channel: <b>{{ $application->uses_email ? 'Yes' : 'No' }}</b> </li>
+                <li class="list-group-item">Uses Web Push channel: <b>{{ $application->uses_web_push ? 'Yes' : 'No' }}</b> </li>
+            </ul>
         </div>
     </div>
-</div>
-
-
-
+@else
+    <p>Application not found</p>
+@endif
 @endsection

@@ -16,7 +16,7 @@
             <tr>
                 <td>{{ $template->name }}</td>
                 <td>
-                    <a type="button" class="btn btn-sm btn-info" href="{{ route('email-templates-detail', $template->id) }}" target="_blank" >Details <i class="fa fa-eye" aria-hidden="true"></i></a>
+                    <a type="button" class="btn btn-sm btn-info" href="{{ route('email-templates-detail', $template->id) }}" target="_blank" >Show <i class="fa fa-eye" aria-hidden="true"></i></a>
                     <a type="button" class="btn btn-sm btn-primary" href="{{ route('email-templates-delete', $template->id) }}">Delete <i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
                 </td>
             </tr>

@@ -19,6 +19,8 @@ class EmailNotificationService
 
         if($channel == null || !$channel->is_enabled) throw ValidationException::withMessages(['channel' => 'SMS channel is invalid or disabled']);
 
+        if($emailTemplate == null) throw ValidationException::withMessages(['channel' => 'Invalid email template']);
+
         $not = EmailNotification::create([
             'sender_name' => $r->sender_name,
             'email' => $r->email,

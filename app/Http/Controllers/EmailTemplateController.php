@@ -27,7 +27,7 @@ class EmailTemplateController extends Controller
 
         $template = EmailTemplate::create([
             'name' => $r['name'],
-            'content' => $content,
+            'content' => preg_replace( "/\r|\n/", "", $content),
             'user_id' => Auth::user()->id
         ]);
 

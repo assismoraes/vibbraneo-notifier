@@ -54,6 +54,6 @@ class ApplicationController extends Controller
     public function detail(Request $r, $id) {
         $application = Auth::user()->applications()->where('id', '=', $id)->first();
 
-        return RequestUtil::isFromApi($r) ? $application : view('applications.detail', compact(['application']));
+        return RequestUtil::isFromApi($r) ? ($application ?? response(['message' => 'Application not fount'], 404)) : view('applications.detail', compact(['application']));
     }
 }
