@@ -53,4 +53,8 @@ class LoginController extends Controller
         return response(['message' => 'Invalid username or/and password'], 401);
 
     }
+
+    public function showLoginForm() {
+        return view('welcome');
+    }
 }
