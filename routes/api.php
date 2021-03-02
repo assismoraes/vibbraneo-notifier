@@ -17,6 +17,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::post('/auth', 'Auth\LoginController@getToken')->name('auth-get-token');
 
 Route::group(['prefix' => 'applications', 'middleware' => ['auth:api']], function() {
     Route::post('', 'ApplicationController@create')->name('applications-create');
