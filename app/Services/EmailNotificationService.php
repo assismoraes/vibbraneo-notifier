@@ -59,9 +59,9 @@ class EmailNotificationService
         $applicationsIds = $user->applications()->select('id')->get();
         $notifications = EmailNotification::whereIn('application_id', $applicationsIds);
 
-        if($r->has('from')) $notifications->where('sent_at', '>=', $r->from);
+        if(!empty($r->from)) $notifications->where('sent_at', '>=', $r->from);
 
-        if($r->has('to')) $notifications->where('sent_at', '<=', $r->to);
+        if(!empty($r->to)) $notifications->where('sent_at', '<=', $r->to);
 
         $notifications->orderBy('id', 'desc');
 
