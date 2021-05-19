@@ -16,9 +16,9 @@ Beside that there is a Dockerfile in the same folder. It has all commands to bui
 
 #### Deploy instructions
 ```sh
-$ git clone http://git.vibbra.com.br/assis/vibbraneo-notifier.git vibbraneo-notifier
+$ git clone https://github.com/assismoraes/vibbraneo-notifier.git vibbraneo-notifier
 $ cd vibbraneo-notifier/
-$ docker run --rm -v $(pwd):/app composer install
+$ docker run --rm -v $(pwd):/app composer install --ignore-platform-reqs
 $ docker-compose down && docker-compose up
 ```
 ##### After containers started, in another terminal:
